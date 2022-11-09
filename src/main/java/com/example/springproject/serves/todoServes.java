@@ -14,17 +14,21 @@ import java.util.List;
 public class todoServes {
     @Autowired
     private todoRepo TodoRepo;
+
     public List<todo> findAll() {
-         return TodoRepo.findAll();
+        return TodoRepo.findAll();
     }
+
     public todo getByID(String id) {
         return TodoRepo.findById(id).get();
     }
 
     public todo createNewTodo(todo Todo) {
-       return TodoRepo.insert(Todo);
+
+        return TodoRepo.insert(Todo);
     }
-    public void deleteTodo(String id){
+
+    public void deleteTodo(String id) {
         TodoRepo.deleteById(id);
     }
 

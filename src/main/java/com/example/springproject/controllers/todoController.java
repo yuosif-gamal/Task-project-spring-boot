@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import todos.todo;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -22,9 +23,13 @@ public class todoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<todo> getTodoById(@PathVariable String id) {
-        return new ResponseEntity<todo>(TodoServes.getByID(id), HttpStatus.OK);
+        try {
+            return new ResponseEntity<todo>(TodoServes.getByID(id), HttpStatus.OK);
+        }
+        catch (NoSuchElementException ex){
+            throw new NoSuchElementException(String.format("no such data with this id in data base " , id));
+        }
     }
-
     @PostMapping(value = {"", "/add"})
     public ResponseEntity<todo> createNewTodo(@RequestBody todo Todo) {
         return new ResponseEntity<>(TodoServes.createNewTodo(Todo), HttpStatus.CREATED);
