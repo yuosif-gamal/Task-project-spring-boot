@@ -23,14 +23,22 @@ public class TaskServices {
 
         return taskRepo.save(task);
     }
-    public void deleteTask(Long id) {
+    public boolean deleteTask(Long id) {
+        if (!taskRepo.existsById(id)){
+            return false;
+        }
         taskRepo.deleteById(id);
+        return true;
     }
-    public void updateTask(Long id , Task task){
+    public boolean updateTask(Long id , Task task){
+        if (!taskRepo.existsById(id)){
+            return false;
+        }
         Optional<Task> t = taskRepo.findById(id);
         t.get().setName(task.getName());
         t.get().setAge(task.getAge());
         taskRepo.save(t.get());
+        return true;
     }
     public void  deleteAll(){
         taskRepo.deleteAll();

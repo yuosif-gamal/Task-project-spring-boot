@@ -10,10 +10,10 @@ public class Task {
     @NotNull("title of task should be not empty ")
     private String title ;
     @NotNull("Age should be not empty ")
-    private String age ;
+    private int  age ;
     public Task() {
     }
-    public Task(Long id, String name, String age) {
+    public Task(Long id, String name, int  age) {
         this.id = id;
         this.title = name;
         this.age = age;
@@ -35,11 +35,11 @@ public class Task {
         this.title = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
