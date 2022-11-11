@@ -24,7 +24,7 @@ public class TaskController {
         try {
             return taskService.getByID(id);
         } catch (NoSuchElementException ex) {
-            throw new NoSuchElementException(String.format("no such data with this id in data base ", id));
+            throw new NoSuchElementException(String.format("no such data with this id in data base "));
         }
     }
 
