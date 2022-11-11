@@ -1,5 +1,5 @@
 package com.example.springproject.controllers;
-import com.example.springproject.serves.TaskServices;
+import com.example.springproject.services.TaskServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.springproject.modules.Task;

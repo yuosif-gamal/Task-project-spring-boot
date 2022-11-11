@@ -1,4 +1,4 @@
-package com.example.springproject.serves;
+package com.example.springproject.services;
 import com.example.springproject.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.springproject.modules.Task;
