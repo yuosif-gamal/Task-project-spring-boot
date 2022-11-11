@@ -1,10 +1,9 @@
 package com.example.springproject.errors;
 
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 
-public class notFoundException extends RuntimeException {
-     public notFoundException(String message){
+public class NotFoundException extends RuntimeException {
+     public NotFoundException(String message){
          super(message);
      }
      public HttpStatus getStatus(){

@@ -8,10 +8,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class apiErrorsException extends ResponseEntityExceptionHandler {
+public class ApiErrorsException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
-    public ResponseEntity<errorDetails> handleApiEx(notFoundException ex , WebRequest webRequest){
-        errorDetails details = new errorDetails(ex.getMessage(),webRequest.getDescription(false));
+    public ResponseEntity<ErrorDetails> handleApiEx(NotFoundException ex , WebRequest webRequest){
+        ErrorDetails details = new ErrorDetails(ex.getMessage(),webRequest.getDescription(false));
         return new ResponseEntity<>(details , ex.getStatus());
     }
 

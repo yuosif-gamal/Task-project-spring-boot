@@ -1,10 +1,10 @@
 package com.example.springproject.errors;
 
-public class errorDetails {
+public class ErrorDetails {
     private String message;
     private String uri;
 
-    public errorDetails(String message, String uri) {
+    public ErrorDetails(String message, String uri) {
         this.message = message;
         this.uri = uri;
     }
