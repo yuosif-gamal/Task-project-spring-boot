@@ -2,8 +2,6 @@ package com.example.springproject.controllers;
 
 import com.example.springproject.serves.todoServes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import modules.todo;
 
@@ -17,38 +15,45 @@ public class todoController {
     private todoServes TodoServes;
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<todo>> getAll() {
-        return new ResponseEntity<>(TodoServes.findAll(), HttpStatus.OK);
+    public List<todo> getAll() {
+        return TodoServes.findAll();
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<todo> getTodoById(@PathVariable String id) {
+    public todo getTodoById(@PathVariable String id) {
         try {
-            return new ResponseEntity<todo>(TodoServes.getByID(id), HttpStatus.OK);
+            return TodoServes.getByID(id);
         }
         catch (NoSuchElementException ex){
             throw new NoSuchElementException(String.format("no such data with this id in data base " , id));
         }
     }
     @GetMapping("get-by-name/{name}")
-    public ResponseEntity<todo> getTodoByName(@PathVariable String name) {
+    public todo getTodoByName(@PathVariable String name) {
         try {
-            return new ResponseEntity<todo>(TodoServes.getByName(name), HttpStatus.OK);
+           return TodoServes.getByName(name);
         }
         catch (NoSuchElementException ex){
             throw new NoSuchElementException(String.format("no such data with this name in database " , name));
         }
     }
     @PostMapping("/add-new")
-    public ResponseEntity<todo> createNewTodo(@RequestBody todo Todo) {
-        return new ResponseEntity<>(TodoServes.createNewTodo(Todo), HttpStatus.CREATED);
+    public todo createNewTodo(@RequestBody todo Todo) {
+        return TodoServes.createNewTodo(Todo);
+    }
+    @PutMapping("/update/{id}/{name}")
+    public String updateName(@PathVariable String name ,@PathVariable String id){
+        TodoServes.updateTodo(name, id);
+        return "Success";
     }
     @DeleteMapping("/delete{id}")
-    public ResponseEntity<Void> deleteTodo(@PathVariable String id) {
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    public String deleteTodo(@PathVariable String id) {
+        TodoServes.deleteTodo(id);
+        return "Done";
     }
     @DeleteMapping("/delete-all")
-    public ResponseEntity<Void> deleteAll(){
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    public String deleteAll(){
+        TodoServes.deleteAll();
+        return "Done";
     }
 }

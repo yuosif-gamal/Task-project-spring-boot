@@ -31,6 +31,9 @@ public class todoServes {
     public void deleteTodo(String id) {
         TodoRepo.deleteById(id);
     }
+    public void updateTodo(String name , String id){
+        TodoRepo.updateName(name, id);
+    }
     public void  deleteAll(){
         TodoRepo.deleteAll();
     }
