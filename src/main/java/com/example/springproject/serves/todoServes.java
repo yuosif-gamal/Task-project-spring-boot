@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import modules.todo;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -16,11 +17,9 @@ public class todoServes {
     public List<todo> findAll() {
         return TodoRepo.findAll();
     }
-
     public todo getByID(String id) {
         return TodoRepo.findById(id).get();
     }
-
     public todo getByName(String name) {
         return TodoRepo.getByName(name);
     }
@@ -31,8 +30,11 @@ public class todoServes {
     public void deleteTodo(String id) {
         TodoRepo.deleteById(id);
     }
-    public void updateTodo(String name , String id){
-        TodoRepo.updateName(name, id);
+    public void updateTodo(String id , todo Todo){
+        Optional<todo> t = TodoRepo.findById(id);
+        t.get().setName(Todo.getName());
+        t.get().setAge(Todo.getAge());
+        TodoRepo.save(t.get());
     }
     public void  deleteAll(){
         TodoRepo.deleteAll();
