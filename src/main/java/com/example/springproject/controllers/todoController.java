@@ -2,7 +2,7 @@ package com.example.springproject.controllers;
 import com.example.springproject.serves.todoServes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import modules.todo;
+import com.example.springproject.modules.todo;
 import java.util.List;
 import java.util.NoSuchElementException;
 

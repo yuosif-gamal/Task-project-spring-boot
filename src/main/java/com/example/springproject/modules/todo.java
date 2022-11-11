@@ -1,18 +1,18 @@
-package modules;
-
+package com.example.springproject.modules;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
+import javax.persistence.*;
+@Entity
+@Table(name = "task")
 public class todo {
     @Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @NotNull("Name should be not empty ")
     private String name ;
     @NotNull("Age should be not empty ")
     private String age ;
-
+    public todo() {
+    }
     public todo(String id, String name, String age) {
         this.id = id;
         this.name = name;

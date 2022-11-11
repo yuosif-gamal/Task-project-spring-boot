@@ -1,15 +1,13 @@
 package com.example.springproject.serves;
-
 import com.example.springproject.repo.todoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.springproject.modules.todo;
 import org.springframework.stereotype.Service;
-import modules.todo;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class todoServes {
     @Autowired
     private todoRepo TodoRepo;
@@ -25,7 +23,7 @@ public class todoServes {
     }
     public todo createNewTodo(todo Todo) {
 
-        return TodoRepo.insert(Todo);
+        return TodoRepo.save(Todo);
     }
     public void deleteTodo(String id) {
         TodoRepo.deleteById(id);
