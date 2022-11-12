@@ -42,8 +42,5 @@ public class TaskServices {
         taskRepo.save(t.get());
         return true;
     }
-    public void  deleteAll(){
-        taskRepo.deleteAll();
-    }
 
 }
