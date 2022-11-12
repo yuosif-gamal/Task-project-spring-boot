@@ -16,6 +16,7 @@ public class Task {
     @NotNull ("Status should be not null should be true or false")
     private boolean status ;
 
+
     public Task() {
     }
     public Task(Long id, String name, String  deadline ,String description , boolean status) {

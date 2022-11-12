@@ -29,16 +29,24 @@ public class TaskController {
     }
 
     @PostMapping("/add")
-    public Task createNewTask(@RequestBody Task task) {
-        return taskService.createNewTasK(task);
+    public String createNewTask(@RequestBody Task task) {
+        boolean t =  taskService.createNewTasK(task);
+        if (t == true) {
+            return "Created";
+        }
+        return "this id already exist";
     }
 
     @PutMapping("/update/{id}")
     public String update(@PathVariable Long id, @RequestBody Task task) {
-        if (taskService.updateTask(id, task) == true) {
+        int t = taskService.updateTask(id, task);
+        if (t == 0) {
+            return "Wrong id";
+        }
+        else if (t == 1){
             return "Updated";
         }
-        return "Wrong id";
+        return "please fill all information";
     }
 
     @DeleteMapping("/delete/{id}")

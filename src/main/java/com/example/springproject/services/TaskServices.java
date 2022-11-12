@@ -21,9 +21,14 @@ public class TaskServices {
         return taskRepo.findById(id).get();
     }
 
-    public Task createNewTasK(Task task) {
-
-        return taskRepo.save(task);
+    public boolean createNewTasK(Task task) {
+        if (task.getId() != null){
+            if (taskRepo.existsById(task.getId())) {
+                return false;
+            }
+        }
+        taskRepo.save(task);
+        return true;
     }
 
     public boolean deleteTask(Long id) {
@@ -34,17 +39,32 @@ public class TaskServices {
         return true;
     }
 
-    public boolean updateTask(Long id, Task task) {
+    public int updateTask(Long id, Task task) {
         if (!taskRepo.existsById(id)) {
-            return false;
+            return 0;
         }
         Optional<Task> t = taskRepo.findById(id);
+        if (task.getId() == null){
+            return 2;
+        }
+        if (task.getDeadline() == null){
+            return 2;
+        }
+        if (task.getDescription() == null){
+            return 2;
+        }
+        if (task.isStatus() != true && task.isStatus() != false){
+            return 2;
+        }
+        if (task.getTitle() == null){
+            return 2;
+        }
         t.get().setTitle(task.getTitle());
         t.get().setDeadline(task.getDeadline());
         t.get().setDescription(task.getDescription());
         t.get().setStatus(task.isStatus());
         taskRepo.save(t.get());
-        return true;
+        return 1;
     }
 
 }
