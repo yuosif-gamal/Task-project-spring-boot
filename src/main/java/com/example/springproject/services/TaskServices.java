@@ -35,8 +35,10 @@ public class TaskServices {
             return false;
         }
         Optional<Task> t = taskRepo.findById(id);
-        t.get().setName(task.getName());
-        t.get().setAge(task.getAge());
+        t.get().setTitle(task.getTitle());
+        t.get().setDeadline(task.getDeadline());
+        t.get().setDescription(task.getDescription());
+        t.get().setStatus(task.isStatus());
         taskRepo.save(t.get());
         return true;
     }

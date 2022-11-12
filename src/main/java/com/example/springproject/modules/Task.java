@@ -1,4 +1,5 @@
 package com.example.springproject.modules;
+
 import org.jetbrains.annotations.NotNull;
 import javax.persistence.*;
 @Entity
@@ -7,16 +8,38 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull("title of task should be not empty ")
+    @NotNull("Title of task should be not empty ")
     private String title ;
-    @NotNull("Age should be not empty ")
-    private int  age ;
+    @NotNull("Deadline should be not empty ")
+    private String deadline ;
+    private String description;
+    @NotNull ("Status should be not null should be true or false")
+    private boolean status ;
+
     public Task() {
     }
-    public Task(Long id, String name, int  age) {
+    public Task(Long id, String name, String  deadline ,String description , boolean status) {
         this.id = id;
         this.title = name;
-        this.age = age;
+        this.deadline = deadline;
+        this.description = description;
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getId() {
@@ -27,20 +50,20 @@ public class Task {
         this.id = id;
     }
 
-    public String getName() {
+    public String getTitle() {
         return title;
     }
 
-    public void setName(String name) {
+    public void setTitle(String name) {
         this.title = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
     @Override
@@ -48,7 +71,7 @@ public class Task {
         return "todoController{" +
                 "id=" + id +
                 ", name='" + title + '\'' +
-                ", age=" + age +
+                ", deadline=" + deadline +
                 '}';
     }
 }
