@@ -8,9 +8,9 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull("Title of task should be not empty ")
+    @NotNull("Title of task should be not empty")
     private String title ;
-    @NotNull("Deadline should be not empty ")
+    @NotNull("Deadline should be not empty")
     private String deadline ;
     private String description;
     @NotNull ("Status should be not null should be true or false")

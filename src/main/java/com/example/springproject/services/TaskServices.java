@@ -1,4 +1,5 @@
 package com.example.springproject.services;
+
 import com.example.springproject.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.springproject.modules.Task;
@@ -15,6 +16,7 @@ public class TaskServices {
     public List<Task> findAll() {
         return taskRepo.findAll();
     }
+
     public Task getByID(Long id) {
         return taskRepo.findById(id).get();
     }
@@ -23,15 +25,17 @@ public class TaskServices {
 
         return taskRepo.save(task);
     }
+
     public boolean deleteTask(Long id) {
-        if (!taskRepo.existsById(id)){
+        if (!taskRepo.existsById(id)) {
             return false;
         }
         taskRepo.deleteById(id);
         return true;
     }
-    public boolean updateTask(Long id , Task task){
-        if (!taskRepo.existsById(id)){
+
+    public boolean updateTask(Long id, Task task) {
+        if (!taskRepo.existsById(id)) {
             return false;
         }
         Optional<Task> t = taskRepo.findById(id);
