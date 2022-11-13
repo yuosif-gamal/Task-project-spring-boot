@@ -3,8 +3,8 @@ package com.example.springproject.modules;
 import org.jetbrains.annotations.NotNull;
 import javax.persistence.*;
 @Entity
-@Table(name = "task")
-public class Task {
+@Table
+public class Task  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,16 +16,25 @@ public class Task {
     @NotNull ("Status should be not null should be true or false")
     private boolean status ;
 
-
+    private Long list_id;
     public Task() {
+        deadline = null;
     }
-    public Task(Long id, String name, String  deadline ,String description , boolean status) {
-        this.id = id;
+
+    public Long getList_id() {
+        return list_id;
+    }
+
+    public void setList_id(Long list_id) {
+        this.list_id = list_id;
+    }
+    public Task(String name, String  deadline , String description , boolean status ) {
         this.title = name;
         this.deadline = deadline;
         this.description = description;
         this.status = status;
     }
+
 
     public boolean isStatus() {
         return status;

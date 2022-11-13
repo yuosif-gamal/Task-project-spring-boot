@@ -1,6 +1,6 @@
 package com.example.springproject.controllers;
 
-import com.example.springproject.services.TaskServices;
+import com.example.springproject.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.springproject.modules.Task;
@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 @RequestMapping(value = "/api/task")
 public class TaskController {
     @Autowired
-    private TaskServices taskService;
+    private TaskService taskService;
 
     @GetMapping("/all")
     public List<Task> findAll() {

@@ -9,26 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TaskServices {
+public class TaskService {
     @Autowired
     private TaskRepo taskRepo;
-
     public List<Task> findAll() {
         return taskRepo.findAll();
     }
 
     public Task getByID(Long id) {
         return taskRepo.findById(id).get();
-    }
-
-    public boolean createNewTasK(Task task) {
-        if (task.getId() != null){
-            if (taskRepo.existsById(task.getId())) {
-                return false;
-            }
-        }
-        taskRepo.save(task);
-        return true;
     }
 
     public boolean deleteTask(Long id) {
@@ -66,5 +55,13 @@ public class TaskServices {
         taskRepo.save(t.get());
         return 1;
     }
+
+    public boolean createNewTasK(Task task) {
+        taskRepo.save(task);
+        return true;
+    }
+    //add task to list ...  api ... id task .. id list (move-to-list/{id}/{list_id})
+    //remove task from list
+
 
 }
