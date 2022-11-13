@@ -1,5 +1,6 @@
 package com.example.springproject.services;
 
+import com.example.springproject.repo.TaskListRepo;
 import com.example.springproject.repo.TaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.springproject.modules.Task;
@@ -12,6 +13,9 @@ import java.util.Optional;
 public class TaskService {
     @Autowired
     private TaskRepo taskRepo;
+    @Autowired
+    private TaskListRepo taskListRepo;
+
     public List<Task> findAll() {
         return taskRepo.findAll();
     }
@@ -33,19 +37,19 @@ public class TaskService {
             return 0;
         }
         Optional<Task> t = taskRepo.findById(id);
-        if (task.getId() == null){
+        if (task.getId() == null) {
             return 2;
         }
-        if (task.getDeadline() == null){
+        if (task.getDeadline() == null) {
             return 2;
         }
-        if (task.getDescription() == null){
+        if (task.getDescription() == null) {
             return 2;
         }
-        if (task.isStatus() != true && task.isStatus() != false){
+        if (task.isStatus() != true && task.isStatus() != false) {
             return 2;
         }
-        if (task.getTitle() == null){
+        if (task.getTitle() == null) {
             return 2;
         }
         t.get().setTitle(task.getTitle());
@@ -60,8 +64,34 @@ public class TaskService {
         taskRepo.save(task);
         return true;
     }
-    //add task to list ...  api ... id task .. id list (move-to-list/{id}/{list_id})
-    //remove task from list
+
+    public int moveTaskToList(Long id, Long list_id) {
+        if (!taskRepo.existsById(id)) {
+            return 0;
+        }
+        if (!taskListRepo.existsById(list_id)) {
+            return 1;
+        } else {
+            Optional<Task> task = taskRepo.findById(id);
+            task.get().setList_id(list_id);
+            taskRepo.save(task.get());
+            return 2;
+        }
+    }
 
 
+    public int delteTaskList(Long id, Long list_id) {
+        if (!taskRepo.existsById(id)) {
+            return 0;
+        }
+        if (!taskListRepo.existsById(list_id)) {
+            return 1;
+        } else {
+            Optional<Task> task = taskRepo.findById(id);
+            task.get().setList_id(null);
+            taskRepo.save(task.get());
+            return 2;
+        }
+    }
 }
+

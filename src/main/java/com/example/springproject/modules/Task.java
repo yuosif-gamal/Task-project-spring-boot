@@ -1,7 +1,13 @@
 package com.example.springproject.modules;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 @Entity
 @Table
 public class Task  {
@@ -11,7 +17,10 @@ public class Task  {
     @NotNull("Title of task should be not empty")
     private String title ;
     @NotNull("Deadline should be not empty")
-    private String deadline ;
+    @JsonFormat(pattern="yyyy-MM-dd")
+
+    private Date deadline ;
+    @NotNull
     private String description;
     @NotNull ("Status should be not null should be true or false")
     private boolean status ;
@@ -28,7 +37,7 @@ public class Task  {
     public void setList_id(Long list_id) {
         this.list_id = list_id;
     }
-    public Task(String name, String  deadline , String description , boolean status ) {
+    public Task(String name, Date  deadline , String description , boolean status ) {
         this.title = name;
         this.deadline = deadline;
         this.description = description;
@@ -68,11 +77,11 @@ public class Task  {
         this.title = name;
     }
 
-    public String getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 

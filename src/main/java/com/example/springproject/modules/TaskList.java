@@ -10,26 +10,20 @@ public class TaskList {
     private Long list_id;
     @NotNull
     private  String name;
+
     public TaskList() {
     }
-    public Long getListId() {
-        return list_id;
-    }
 
-    public void setListId(Long listId) {
-        list_id = listId;
-    }
-
-    public TaskList(String name) {
+    public TaskList(@NotNull String name) {
         this.name = name;
     }
 
-    public Long getId() {
+    public Long getList_id() {
         return list_id;
     }
 
-    public void setId(Long id) {
-        this.list_id = id;
+    public void setList_id(Long list_id) {
+        this.list_id = list_id;
     }
 
     public String getName() {
@@ -39,6 +33,4 @@ public class TaskList {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

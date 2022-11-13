@@ -57,4 +57,26 @@ public class TaskController {
         }
         return "Wrong id";
     }
+    @PutMapping("/move-to-list/{id}/{list_id}")
+    public String moveTaskToSpecificList(@PathVariable Long id ,@PathVariable Long list_id){
+        int t = taskService.moveTaskToList(id, list_id);
+        if (t == 0) {
+            return "No Task With This ID";
+        }
+        else if (t == 1){
+            return "No List With This ID";
+        }
+        return "Done";
+    }
+    @PutMapping("/delete-from-list/{id}/{list_id}")
+    public String deleteTaskFromList(@PathVariable Long id ,@PathVariable Long list_id){
+        int t = taskService.delteTaskList(id, list_id);
+        if (t == 0) {
+            return "No Task With This ID";
+        }
+        else if (t == 1){
+            return "No List With This ID";
+        }
+        return "Deleted";
+    }
 }
