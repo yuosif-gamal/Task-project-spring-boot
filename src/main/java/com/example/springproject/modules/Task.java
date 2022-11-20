@@ -18,7 +18,6 @@ public class Task  {
     private String title ;
     @NotNull("Deadline should be not empty")
     @JsonFormat(pattern="yyyy-MM-dd")
-
     private Date deadline ;
     @NotNull
     private String description;

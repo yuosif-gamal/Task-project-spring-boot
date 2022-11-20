@@ -61,4 +61,11 @@ public class TaskListService {
         return res;
 
     }
+
+        public List<TaskList> findAllLists() {
+            return taskListRepo.findAll();
+
+    }
+
+
 }

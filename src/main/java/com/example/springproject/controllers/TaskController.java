@@ -68,6 +68,7 @@ public class TaskController {
         }
         return "Done";
     }
+    //remove task from list
     @PutMapping("/delete-from-list/{id}/{list_id}")
     public String deleteTaskFromList(@PathVariable Long id ,@PathVariable Long list_id){
         int t = taskService.delteTaskList(id, list_id);

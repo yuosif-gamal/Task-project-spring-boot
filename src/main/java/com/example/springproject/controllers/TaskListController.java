@@ -16,6 +16,10 @@ public class TaskListController {
     private TaskListService taskListService;
     @Autowired
     private TaskService taskService;
+    @GetMapping("/all")
+    public List<TaskList> findAll() {
+        return taskListService.findAllLists();
+    }
     @PostMapping("/add")
     public String createNewList(@RequestBody TaskList taskList) {
         boolean t =  taskListService.addList(taskList);
